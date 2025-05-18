@@ -53,7 +53,7 @@ class RandomDerivative(Base):
             shift = random.randint(1, 8)
             root_degree = random.randint(2, 5)
 
-            term_type = random.choices(['poly', 'trig', 'exp', 'exponential', 'log', 'root'], weights = [7, 3, 2, 2, 2, 1])[0]
+            term_type = random.choices(['poly', 'trig', 'exp', 'exponential', 'log', 'root'], weights = [7, 3, 2, 3, 2, 1])[0]
 
             if term_type == 'poly':
                 terms.append(coeff * x ** power)
@@ -66,7 +66,7 @@ class RandomDerivative(Base):
                 terms.append(coeff * sympy.exp(x))
 
             elif term_type == 'exponential':
-                terms.append(coeff * x ** power)
+                terms.append(coeff * (power ** x))
 
             elif term_type == 'log':
                 terms.append(coeff * sympy.log(x + shift))
@@ -109,7 +109,7 @@ class RandomIntegral(Base):
             shift = random.randint(1, 8)
             root_degree = random.randint(2, 5)
 
-            term_type = random.choices(['poly', 'trig', 'exp', 'exponential', 'log', 'root'], weights = [7, 3, 2, 2, 2, 1])[0]
+            term_type = random.choices(['poly', 'trig', 'exp', 'exponential', 'log', 'root'], weights = [7, 3, 2, 3, 2, 1])[0]
 
             if term_type == 'poly':
                 terms.append(coeff * x ** power)
@@ -122,7 +122,7 @@ class RandomIntegral(Base):
                 terms.append(coeff * sympy.exp(x))
 
             elif term_type == 'exponential':
-                terms.append(coeff * x ** power)
+                terms.append(coeff * power ** x)
 
             elif term_type == 'log':
                 terms.append(coeff * sympy.log(x + shift))
