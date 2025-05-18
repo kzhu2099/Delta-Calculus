@@ -3,7 +3,7 @@ import random
 import urllib.parse
 
 def check(answer, correct_answer):
-    if sympy.simplify(sympy.sympify(answer) - correct_answer) == 0:
+    if sympy.simplify(sympy.parsing.parse_expr(answer, transformations = 'all') - correct_answer) == 0:
         return True
 
     else:
