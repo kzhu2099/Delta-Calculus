@@ -1,2 +1,2 @@
-from Main import *
-from Trainer import *
+from .Main import *
+from .Trainer import *
