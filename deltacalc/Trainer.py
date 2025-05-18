@@ -1,5 +1,5 @@
 from IPython.display import display
-from Main import RandomDerivative, RandomIntegral, check
+from .Main import RandomDerivative, RandomIntegral, check
 
 class Trainer:
     @staticmethod
