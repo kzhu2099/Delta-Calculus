@@ -13,6 +13,8 @@ class Trainer:
         display(RandomDerivative.question())
 
         answer = input('Enter your answer: \n')
+        print(f'Your answer: {answer}')
+
         correct_answer = RandomDerivative.answer(e)
         print('Correct!' if check(answer, correct_answer) else 'Incorrect!')
         display(correct_answer)
@@ -28,6 +30,8 @@ class Trainer:
         display(RandomIntegral.question())
 
         answer = input('Enter your answer: \n')
+        print(f'Your answer: {answer}')
+
         correct_answer = RandomIntegral.answer(e)
         print('Correct!' if check(answer, correct_answer) else 'Incorrect!')
         display(correct_answer)

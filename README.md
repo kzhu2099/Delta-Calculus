@@ -9,6 +9,12 @@ Author: Kevin Zhu
 
 ## Features
 
+- seed setting
+- both integrals and derivatives
+- image making from latex
+- built in trainer
+- random problems that are difficult
+
 ## Installation
 
 To install deltacalc, use pip: ```pip install deltacalc```.
@@ -57,6 +63,7 @@ This class aims to provide challenging problems of calculus quickly.
 
 Simply use `RandomDerivative` or `RandomIntegral` to generate a problem and check your work using `check()`. Or, use the Trainer class to easily train yourself with a certain amount of problems.
 
+Set your seed manually to get repeatable problems, using the set_seed method.
 Warning: these problems get REALLY messy!!
 
 ## License

@@ -1,5 +1,6 @@
 import sympy
 import random
+import urllib.parse
 
 def check(answer, correct_answer):
     if sympy.simplify(sympy.sympify(answer) - correct_answer) == 0:
@@ -8,13 +9,14 @@ def check(answer, correct_answer):
     else:
         return False
 
-def html_problem(cls):
-    cls.init()
-    e = cls.generate()
-    cls.equation(e)
-    cls.question()
+def html_problem(expr):
+    return sympy.printing.mathml(expr)
 
-    return sympy.printing.mathml(cls.equation(e))
+def image(expr):
+    return f'https://latex.codecogs.com/png.latex?{urllib.parse.quote(sympy.latex(expr))}'
+
+def set_seed(seed):
+    random.seed(seed)
 
 class Base:
     @staticmethod
@@ -23,6 +25,7 @@ class Base:
         global f; f = sympy.Function('f')
         sympy.init_printing()
 
+    @staticmethod
     def generate(self):
         raise NotImplementedError('Subclasses should implement this!')
 
@@ -30,9 +33,11 @@ class Base:
     def equation(expr):
         return sympy.Eq(sympy.Function('f')(x), expr)
 
+    @staticmethod
     def question(self):
         raise NotImplementedError('Subclasses should implement this!')
 
+    @staticmethod
     def answer(self, expr):
         raise NotImplementedError('Subclasses should implement this!')
 
