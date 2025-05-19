@@ -15,6 +15,9 @@ def html_problem(expr):
 def image(expr):
     return f'https://latex.codecogs.com/png.latex?{urllib.parse.quote(sympy.latex(expr))}'
 
+def black_background_image(image_link):
+    return 'https://latex.codecogs.com/png.latex?\\bg_black\\color{White}' + f'{urllib.parse.quote(sympy.latex(image_link))}'
+
 def set_seed(seed):
     random.seed(seed)
 
