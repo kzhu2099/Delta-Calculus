@@ -5,7 +5,7 @@ build-backend = 'setuptools.build_meta'
 [project]
 name = 'deltacalc'
 
-version = '1.0.5'
+version = '1.0.7'
 
 description = 'a model for the mass of an exoplanet given the radius'
 
@@ -40,9 +40,8 @@ dependencies = ['sympy', 'IPython']
 Homepage = 'https://github.com/kzhu2099/Delta-Calculus'
 Issues = 'https://github.com/kzhu2099/Delta-Calculus/issues'
 
-[tool.setuptools.package-data]
-'deltacalc.data' = ['*']
+[tool.setuptools.packages.find]
+include = ['deltacalc', 'deltacalc.*']
 
 [tool.setuptools]
-packages = ['deltacalc']
 license-files = []
