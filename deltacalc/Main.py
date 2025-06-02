@@ -29,8 +29,58 @@ class Base:
         sympy.init_printing()
 
     @staticmethod
-    def generate(self):
-        raise NotImplementedError('Subclasses should implement this!')
+    def generate():
+        terms = []
+        num_terms = random.choices([1, 2, 3], weights = [2, 2, 1])[0]
+        can_div = True
+
+        if num_terms == 3:
+            can_div = False
+
+        for _ in range(num_terms):
+            coeff = random.randint(1, 5)
+            power = random.randint(1, 3)
+            shift = random.randint(1, 5)
+            root_degree = random.randint(2, 4)
+
+            term_type = random.choices(['poly', 'trig', 'exp', 'exponential', 'log', 'root'], weights = [7, 3, 2, 3, 2, 1])[0]
+
+            if term_type == 'poly':
+                terms.append(coeff * x ** power)
+
+            elif term_type == 'trig':
+                f = random.choices([sympy.sin, sympy.cos, sympy.tan, sympy.cot, sympy.sec, sympy.csc], weights = [3, 2, 2, 1, 1, 1])[0]
+                terms.append(coeff * f(x))
+                can_div = False
+
+            elif term_type == 'exp':
+                terms.append(coeff * sympy.exp(x))
+
+            elif term_type == 'exponential':
+                terms.append(coeff * (power ** x))
+                can_div = False
+
+            elif term_type == 'log':
+                terms.append(coeff * sympy.log(x + shift))
+                can_div = False
+
+            elif term_type == 'root':
+                inside = x + shift
+                if root_degree == 2:
+                    root_expr = sympy.sqrt(inside)
+                else:
+                    root_expr = sympy.root(inside, root_degree)
+                terms.append(coeff * root_expr)
+                can_div = False
+
+        expr = sum(terms)
+        if can_div and random.choice([True, False, False]):
+            whole_div_shift = random.randint(1, 3)
+            power = random.randint(1, 3)
+            coeff = random.randint(1, 3)
+            expr = expr / (coeff * (x + whole_div_shift) ** power)
+
+        return expr
 
     @staticmethod
     def equation(expr):
@@ -46,53 +96,6 @@ class Base:
 
 class RandomDerivative(Base):
     @staticmethod
-    def generate():
-        terms = []
-        num_terms = random.choices([2, 3, 4], weights = [1, 2, 3])[0]
-
-        for _ in range(num_terms):
-            coeff = random.randint(1, 8)
-            power = random.randint(1, 8)
-            shift = random.randint(1, 8)
-            root_degree = random.randint(2, 5)
-
-            term_type = random.choices(['poly', 'trig', 'exp', 'exponential', 'log', 'root'], weights = [7, 3, 2, 3, 2, 1])[0]
-
-            if term_type == 'poly':
-                terms.append(coeff * x ** power)
-
-            elif term_type == 'trig':
-                f = random.choices([sympy.sin, sympy.cos, sympy.tan, sympy.cot, sympy.sec, sympy.csc], weights = [3, 2, 2, 1, 1, 1])[0]
-                terms.append(coeff * f(x))
-
-            elif term_type == 'exp':
-                terms.append(coeff * sympy.exp(x))
-
-            elif term_type == 'exponential':
-                terms.append(coeff * (power ** x))
-
-            elif term_type == 'log':
-                terms.append(coeff * sympy.log(x + shift))
-
-            elif term_type == 'root':
-                inside = x + shift
-                if root_degree == 2:
-                    root_expr = sympy.sqrt(inside)
-                else:
-                    root_expr = sympy.root(inside, root_degree)
-                terms.append(coeff * root_expr)
-
-        expr = sum(terms)
-
-        if random.choice([True, True, True, False]):
-            whole_div_shift = random.randint(1, 5)
-            power = random.randint(1, 3)
-            coeff = random.randint(1, 5)
-            expr = expr / (coeff * (x + whole_div_shift) ** power)
-
-        return expr
-
-    @staticmethod
     def question():
         return sympy.Eq(sympy.Function('f\'')(x), sympy.Symbol('...'))
 
@@ -101,53 +104,6 @@ class RandomDerivative(Base):
         return sympy.simplify(sympy.diff(expr, x))
 
 class RandomIntegral(Base):
-    @staticmethod
-    def generate():
-        terms = []
-        num_terms = random.choices([1, 2, 3], weights = [1, 2, 3])[0]
-
-        for _ in range(num_terms):
-            coeff = random.randint(1, 8)
-            power = random.randint(1, 8)
-            shift = random.randint(1, 8)
-            root_degree = random.randint(2, 5)
-
-            term_type = random.choices(['poly', 'trig', 'exp', 'exponential', 'log', 'root'], weights = [7, 3, 2, 3, 2, 1])[0]
-
-            if term_type == 'poly':
-                terms.append(coeff * x ** power)
-
-            elif term_type == 'trig':
-                f = random.choices([sympy.sin, sympy.cos, sympy.tan, sympy.cot, sympy.sec, sympy.csc], weights = [3, 2, 2, 1, 1, 1])[0]
-                terms.append(coeff * f(x))
-
-            elif term_type == 'exp':
-                terms.append(coeff * sympy.exp(x))
-
-            elif term_type == 'exponential':
-                terms.append(coeff * power ** x)
-
-            elif term_type == 'log':
-                terms.append(coeff * sympy.log(x + shift))
-
-            elif term_type == 'root':
-                inside = x + shift
-                if root_degree == 2:
-                    root_expr = sympy.sqrt(inside)
-                else:
-                    root_expr = sympy.root(inside, root_degree)
-                terms.append(coeff * root_expr)
-
-        expr = sum(terms)
-
-        if random.choice([True, True, True, False]):
-            whole_div_shift = random.randint(1, 5)
-            power = random.randint(1, 3)
-            coeff = random.randint(1, 5)
-            expr = expr / (coeff * (x + whole_div_shift) ** power)
-
-        return expr
-
     @staticmethod
     def question():
         return sympy.Eq(sympy.Integral(sympy.Function('f')(x)), sympy.Symbol('...'))
