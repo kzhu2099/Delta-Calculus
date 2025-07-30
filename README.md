@@ -1,11 +1,13 @@
 # deltacalc
 
-deltacalc is a package for efficiently creating customizable calculus problems.
+`deltacalc` is a package for efficiently creating customizable calculus problems.
+
+It aims to offer the same resources as the currently popular `DeltaMath`, but in Python and specifically calculus.
 
 - HomePage: https://github.com/kzhu2099/Delta-Calculus
 - Issues: https://github.com/kzhu2099/Delta-Calculus/issues
 
-[![PyPI Downloads](https://static.pepy.tech/badge/deltacalc)](https://pepy.tech/projects/deltacalc)
+[![PyPI Downloads](https://static.pepy.tech/badge/deltacalc)](https://pepy.tech/projects/deltacalc) ![PyPI version](https://img.shields.io/pypi/v/deltacalc.svg)
 
 Author: Kevin Zhu
 
@@ -19,7 +21,7 @@ Author: Kevin Zhu
 
 ## Installation
 
-To install deltacalc, use pip: ```pip install deltacalc```.
+To install `deltacalc`, use pip: ```pip install deltacalc```.
 
 However, many prefer to use a virtual environment.
 
